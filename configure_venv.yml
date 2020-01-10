@@ -1,0 +1,8 @@
+hosts: localhost
+gather_facts: true
+become: no
+
+tasks:
+  - debug:
+      msg: Hello world
+      
