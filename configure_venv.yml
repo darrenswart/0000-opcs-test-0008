@@ -1,8 +1,10 @@
-hosts: localhost
-gather_facts: true
-become: no
+---
+- name: Configure venv
+  hosts: localhost
+  gather_facts: true
+  become: no
 
-tasks:
-  - debug:
-      msg: Hello world
+  tasks:
+    - debug:
+        msg: Hello world
       
