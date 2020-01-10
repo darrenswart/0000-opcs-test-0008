@@ -7,4 +7,13 @@
   tasks:
     - debug:
         msg: Hello world
-      
+        
+    - command: hostname
+    
+    - command: id
+        
+    - python_requirements_facts:
+        dependencies:
+          - openshift
+          - requests
+                
