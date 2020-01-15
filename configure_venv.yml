@@ -3,6 +3,9 @@
   hosts: all
   gather_facts: true
   become: no
+  
+  vars:
+    ansible_python_interpreter: "{{ ansible_playbook_python }}"
 
   tasks:
     - debug:
