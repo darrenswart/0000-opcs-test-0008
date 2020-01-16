@@ -3,24 +3,26 @@
   hosts: all
   gather_facts: true
   become: no
-  
-  #vars:
-  #  ansible_python_interpreter: "{{ ansible_playbook_python }}"
 
-  tasks:
-    - debug:
-        msg: Hello world
-        
+  tasks:   
     - command: hostname
     
     - command: id
     
-    - debug:
-        var: ansible_version
-        
-    - python_requirements_facts:
-        dependencies:
-          - openshift
-          - requests
-      delegate_to: localhost
-                
+    #- debug:
+    #    var: ansible_version
+     
+    - pip:
+        virtualenv: {{ customer }}
+        umask: "0022"
+        state: present
+        name:
+          - django>1.11.0,<1.12.0
+          - bottle>0.10,<0.20,!=0.11
+          - ansible==2.8.1
+      
+    #- python_requirements_facts:
+    #    dependencies:
+    #      - openshift
+    #      - requests
+    #  delegate_to: localhost           
