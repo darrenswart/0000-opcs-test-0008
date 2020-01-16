@@ -15,8 +15,8 @@
     
     - command: id
     
-    - command: ansible --version
-      delegate_to: localhost
+    - debug:
+        var: ansible_version
         
     - python_requirements_facts:
         dependencies:
