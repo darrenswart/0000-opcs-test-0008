@@ -16,9 +16,11 @@
     - command: id
     
     - command: ansible --version
+      delegate_to: localhost
         
     - python_requirements_facts:
         dependencies:
           - openshift
           - requests
+      delegate_to: localhost
                 
