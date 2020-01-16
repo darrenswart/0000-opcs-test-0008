@@ -13,7 +13,7 @@
     #    var: ansible_version
      
     - pip:
-        virtualenv: "{{ customer }}"
+        virtualenv: "{{ virtualenv }}"
         umask: "0022"
         state: present
         name:
