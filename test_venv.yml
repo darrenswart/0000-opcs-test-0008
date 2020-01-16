@@ -1,0 +1,17 @@
+---
+- name: Test venv
+  hosts: all
+  gather_facts: true
+  
+  tasks:
+    - debug:
+        var: ansible_version
+        
+    - command: hostname
+        
+    - python_requirements_facts:
+        dependencies:
+          - openshift
+          - requests
+          - bottle
+      delegate_to: localhost 
