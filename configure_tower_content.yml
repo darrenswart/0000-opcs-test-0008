@@ -7,7 +7,7 @@
   vars:
     tower:
       host: '{{ lookup("env", "TOWER_HOST") }}'
-      username: '{{ lookup("env", "TOWER_USER") }}'
+      username: '{{ lookup("env", "TOWER_USERNAME") }}'
       password: '{{ lookup("env", "TOWER_PASSWORD") }}'
   
   tasks:
