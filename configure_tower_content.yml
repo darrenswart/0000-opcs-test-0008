@@ -11,7 +11,7 @@
       password: '{{ lookup("env", "TOWER_PASSWORD") }}'
   
   tasks:
-    - block
+    - block:
         - command: hostname
         
         - debug:
