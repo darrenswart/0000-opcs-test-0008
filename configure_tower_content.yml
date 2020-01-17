@@ -1,0 +1,20 @@
+---
+- name: Configure Tower Content
+  hosts: all
+  gather_facts: false
+  become: no
+  
+  vars:
+    tower:
+      host: '{{ lookup("env", "TOWER_HOST") }}'
+      username: '{{ lookup("env", "TOWER_USER") }}'
+      password: '{{ lookup("env", "TOWER_PASSWORD") }}'
+  
+  tasks:
+    - block
+        - command: hostname
+        
+        - debug:
+            var: tower
+      run_once: true
+    
