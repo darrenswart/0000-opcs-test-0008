@@ -26,7 +26,7 @@
           tower_inventory:
             description: sample inventory
             name: Example
-            organization: "{{ organization }}"
+            organization: "{{ org }}"
             state: "{{ tower_state }}"
             tower_config_file: "{{ tower_config_file }}"
             
