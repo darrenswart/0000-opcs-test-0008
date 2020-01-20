@@ -5,16 +5,35 @@
   become: no
   
   vars:
-    tower:
-      host: '{{ lookup("env", "TOWER_HOST") }}'
-      username: '{{ lookup("env", "TOWER_USERNAME") }}'
-      password: '{{ lookup("env", "TOWER_PASSWORD") }}'
+    tower: '{{ lookup("env", "TOWER_HOST") }}'
+    tower_token: '{{ lookup("env", "TOWER_PASSWORD") }}'
+    tower_config_file: ~/tower-cli_config.txt
+    tower_state: present
   
   tasks:
     - block:
         - command: hostname
         
-        - debug:
-            var: tower
+        - name: Create temp tower config file
+          lineinfile:
+            create: yes
+            line: host={{ tower }} oauth_token={{ tower_token }}
+            path: "{{ tower_config_file }}"
+            state: present
+          changed_when: false
+          
+        - name: Create Example Ansible Tower inventory
+          tower_inventory:
+            description: sample inventory
+            name: Example
+            organization: "{{ organization }}"
+            state: "{{ tower_state }}"
+            tower_config_file: "{{ tower_config_file }}"
+            
+        - name: Delete temp tower config file
+          file:
+            path: "{{ tower_config_file }}"
+            state: absent
+          changed_when: false
       run_once: true
     
