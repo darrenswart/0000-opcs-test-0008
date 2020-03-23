@@ -23,16 +23,16 @@
         state: present
       changed_when: false
           
-      - name: Create Example Ansible Tower inventory
-        tower_inventory:
-          description: sample inventory
-          name: Example
-          organization: "{{ org }}"
-          state: "{{ tower_state }}"
-          tower_config_file: "{{ tower_config_file }}"
+    - name: Create Example Ansible Tower inventory
+      tower_inventory:
+        description: sample inventory
+        name: Example
+        organization: "{{ org }}"
+        state: "{{ tower_state }}"
+        tower_config_file: "{{ tower_config_file }}"
             
-      - name: Delete temp tower config file
-        file:
-          path: "{{ tower_config_file }}"
-          state: absent
-        changed_when: false
+    - name: Delete temp tower config file
+      file:
+        path: "{{ tower_config_file }}"
+        state: absent
+      changed_when: false
