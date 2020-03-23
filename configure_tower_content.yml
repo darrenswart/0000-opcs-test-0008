@@ -1,6 +1,6 @@
 ---
 - name: Configure Tower Content
-  hosts: all
+  hosts: localhost
   gather_facts: false
   become: no
   
@@ -11,29 +11,28 @@
     tower_state: present
   
   tasks:
-    - block:
-        - command: hostname
-        
-        - name: Create temp tower config file
-          lineinfile:
-            create: yes
-            line: host={{ tower }} oauth_token={{ tower_token }}
-            path: "{{ tower_config_file }}"
-            state: present
-          changed_when: false
-          
-        - name: Create Example Ansible Tower inventory
-          tower_inventory:
-            description: sample inventory
-            name: Example
-            organization: "{{ org }}"
-            state: "{{ tower_state }}"
-            tower_config_file: "{{ tower_config_file }}"
-            
-        - name: Delete temp tower config file
-          file:
-            path: "{{ tower_config_file }}"
-            state: absent
-          changed_when: false
-      run_once: true
+    - command: hostname
     
+    - command: pwd
+        
+    - name: Create temp tower config file
+      lineinfile:
+        create: yes
+        line: host={{ tower }} oauth_token={{ tower_token }}
+        path: "{{ tower_config_file }}"
+        state: present
+      changed_when: false
+          
+      - name: Create Example Ansible Tower inventory
+        tower_inventory:
+          description: sample inventory
+          name: Example
+          organization: "{{ org }}"
+          state: "{{ tower_state }}"
+          tower_config_file: "{{ tower_config_file }}"
+            
+      - name: Delete temp tower config file
+        file:
+          path: "{{ tower_config_file }}"
+          state: absent
+        changed_when: false
