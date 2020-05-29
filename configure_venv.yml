@@ -5,12 +5,12 @@
   become: no
 
   environment:
-    MANPATH: "{{ '/opt/rh/rh-python36/root/usr/share/man' if (((python_ver | default('3')) | int == 3) and ansible_os_family == 'RedHat' and ansible_distribution_version == '7') else omit }}"
-    X_SCLS: "{{ 'rh-python36' if (((python_ver | default('3')) | int == 3) and ansible_os_family == 'RedHat' and ansible_distribution_version == '7') else omit }}"
-    LD_LIBRARY_PATH: "{{ '/opt/rh/rh-python36/root/usr/lib64' if (((python_ver | default('3')) | int == 3) and ansible_os_family == 'RedHat' and ansible_distribution_version == '7') else omit }}"
-    PATH: "{{ '/opt/rh/rh-python36/root/usr/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin' if (((python_ver | default('3')) | int == 3) and ansible_os_family == 'RedHat' and ansible_distribution_version == '7') else omit }}"
-    XDG_DATA_DIRS: "{{ '/opt/rh/rh-python36/root/usr/share:/usr/local/share:/usr/share' if (((python_ver | default('3')) | int == 3) and ansible_os_family == 'RedHat' and ansible_distribution_version == '7') else omit }}"
-    PKG_CONFIG_PATH: "{{ '/opt/rh/rh-python36/root/usr/lib64/pkgconfig' if (((python_ver | default('3')) | int == 3) and ansible_os_family == 'RedHat' and ansible_distribution_version == '7') else omit }}"
+    MANPATH: "{{ '/opt/rh/rh-python36/root/usr/share/man' if (((python_ver | default('3')) | int == 3) and ansible_distribution == 'RedHat' and ansible_distribution_version == '7') else omit }}"
+    X_SCLS: "{{ 'rh-python36' if (((python_ver | default('3')) | int == 3) and ansible_distribution == 'RedHat' and ansible_distribution_version == '7') else omit }}"
+    LD_LIBRARY_PATH: "{{ '/opt/rh/rh-python36/root/usr/lib64' if (((python_ver | default('3')) | int == 3) and ansible_distribution == 'RedHat' and ansible_distribution_version == '7') else omit }}"
+    PATH: "{{ '/opt/rh/rh-python36/root/usr/bin:/usr/local/sbin:/sbin:/bin:/usr/sbin:/usr/bin:/root/bin' if (((python_ver | default('3')) | int == 3) and ansible_distribution == 'RedHat' and ansible_distribution_version == '7') else omit }}"
+    XDG_DATA_DIRS: "{{ '/opt/rh/rh-python36/root/usr/share:/usr/local/share:/usr/share' if (((python_ver | default('3')) | int == 3) and ansible_distribution == 'RedHat' and ansible_distribution_version == '7') else omit }}"
+    PKG_CONFIG_PATH: "{{ '/opt/rh/rh-python36/root/usr/lib64/pkgconfig' if (((python_ver | default('3')) | int == 3) and ansible_distribution == 'RedHat' and ansible_distribution_version == '7') else omit }}"
     
   tasks:   
     - command: hostname
